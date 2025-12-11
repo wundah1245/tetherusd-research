@@ -4,167 +4,424 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TetherUSD Research Token (TRON)</title>
+
+    <!-- Basic meta -->
+    <meta name="description" content="TetherUSD Research Token is a TRC20 smart contract on TRON mainnet used for educational and research purposes. Not affiliated with the official Tether USDT stablecoin.">
+    <meta name="robots" content="noindex,nofollow">
+
     <style>
+        :root {
+            --bg: #020617;
+            --bg-alt: #030712;
+            --card: #020617;
+            --border: #1f2937;
+            --accent: #22c55e;
+            --accent-soft: #22c55e1a;
+            --accent-soft-2: #22c55e0d;
+            --text: #e5e7eb;
+            --text-soft: #9ca3af;
+            --danger: #f97373;
+            --danger-soft: #7f1d1d66;
+            --muted: #6b7280;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             margin: 0;
             padding: 0;
-            background: #0f172a;
-            color: #e5e7eb;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #111827 0, #020617 48%, #020617 100%);
+            color: var(--text);
         }
-        .wrapper {
-            max-width: 820px;
+
+        .shell {
+            max-width: 1040px;
             margin: 0 auto;
-            padding: 32px 16px 48px;
+            padding: 32px 16px 72px;
         }
-        .card {
-            background: #020617;
-            border-radius: 16px;
-            padding: 28px 24px;
-            border: 1px solid #1f2937;
-            box-shadow: 0 18px 45px rgba(15,23,42,0.6);
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 28px;
         }
-        h1 {
-            font-size: 26px;
-            margin: 0 0 4px;
-            color: #e5e7eb;
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-        .subtitle {
-            font-size: 14px;
-            color: #9ca3af;
-            margin-bottom: 20px;
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 14px;
+            background: radial-gradient(circle at 30% 0, #4ade80, #22c55e 40%, #15803d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 18px 40px rgba(34, 197, 94, 0.50);
         }
-        .tag {
-            display: inline-block;
-            font-size: 11px;
-            padding: 4px 10px;
-            border-radius: 999px;
-            border: 1px solid #22c55e33;
-            color: #bbf7d0;
-            background: #22c55e0d;
-            margin-bottom: 14px;
+
+        .logo span {
+            font-size: 20px;
+            font-weight: 700;
+            color: #022c22;
         }
-        h2 {
+
+        .brand-text-title {
             font-size: 18px;
-            margin-top: 22px;
-            margin-bottom: 8px;
-            color: #f9fafb;
+            font-weight: 600;
         }
-        p {
-            font-size: 14px;
-            line-height: 1.6;
-            color: #d1d5db;
-            margin: 4px 0 8px;
-        }
-        code {
-            font-family: "JetBrains Mono", "Fira Code", monospace;
+
+        .brand-text-sub {
             font-size: 12px;
-            background: #020617;
-            padding: 2px 6px;
-            border-radius: 6px;
-            border: 1px solid #1e293b;
+            color: var(--text-soft);
         }
-        .box {
-            margin-top: 10px;
-            padding: 10px 12px;
-            border-radius: 10px;
-            background: #020617;
-            border: 1px solid #111827;
-        }
-        .label {
-            font-size: 12px;
+
+        .badge {
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 11px;
+            border: 1px solid var(--accent-soft);
+            background: var(--accent-soft-2);
+            color: #bbf7d0;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: #9ca3af;
-            margin-bottom: 4px;
         }
+
+        main {
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2.1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            main {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        .card {
+            background: linear-gradient(135deg, #020617 0, #020617 55%, #020617 100%);
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            box-shadow: 0 22px 60px rgba(15, 23, 42, 0.8);
+            padding: 24px 22px;
+        }
+
+        .card + .card {
+            margin-top: 16px;
+        }
+
+        h1 {
+            font-size: 26px;
+            margin: 0 0 6px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-soft);
+            max-width: 540px;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 18px 0 20px;
+        }
+
+        .chip {
+            font-size: 11px;
+            padding: 4px 9px;
+            border-radius: 999px;
+            background: #020617;
+            border: 1px solid #111827;
+            color: var(--muted);
+        }
+
+        .chip strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: 16px;
+            margin: 12px 0 10px;
+        }
+
+        h3 {
+            font-size: 14px;
+            margin: 16px 0 6px;
+        }
+
+        p {
+            font-size: 13px;
+            line-height: 1.65;
+            margin: 4px 0 10px;
+            color: var(--text);
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .info-box {
+            border-radius: 12px;
+            background: #020617;
+            border: 1px solid #111827;
+            padding: 10px 11px;
+        }
+
+        .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            color: var(--text-soft);
+            margin-bottom: 3px;
+        }
+
         .value {
             font-size: 13px;
-            color: #e5e7eb;
+            color: var(--text);
             word-break: break-all;
         }
-        .disclaimer {
-            margin-top: 20px;
+
+        code {
+            font-family: "JetBrains Mono", "Fira Code", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
             font-size: 12px;
-            color: #fbbf24;
-            border-radius: 10px;
-            padding: 10px 12px;
-            border: 1px solid #fbbf241a;
-            background: #854d0e33;
+            background: #020617;
+            border-radius: 6px;
+            padding: 2px 6px;
+            border: 1px solid #1e293b;
         }
+
+        .disclaimer {
+            margin-top: 18px;
+            border-radius: 12px;
+            padding: 10px 12px;
+            background: var(--danger-soft);
+            border: 1px solid #7f1d1d;
+            font-size: 12px;
+            color: #fecaca;
+        }
+
+        .disclaimer strong {
+            color: #fecaca;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-soft);
+            margin-bottom: 6px;
+        }
+
+        .list {
+            padding-left: 16px;
+            margin: 4px 0 4px;
+        }
+
+        .list li {
+            font-size: 13px;
+            margin-bottom: 4px;
+            color: var(--text);
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: #020617;
+            border: 1px dashed #4b5563;
+            color: var(--muted);
+            margin-top: 6px;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 11px;
+            color: var(--muted);
+            text-align: center;
+        }
+
         a {
             color: #38bdf8;
             text-decoration: none;
         }
+
         a:hover {
             text-decoration: underline;
         }
-        .muted {
+
+        .contact {
+            margin-top: 10px;
             font-size: 12px;
-            color: #9ca3af;
-            margin-top: 4px;
+        }
+
+        .contact a {
+            color: #93c5fd;
         }
     </style>
 </head>
 <body>
-<div class="wrapper">
-    <div class="card">
-        <div class="tag">TRON mainnet · TRC20 research token</div>
-        <h1>TetherUSD Research Token (TRON)</h1>
-        <div class="subtitle">
-            Technical research token on TRON mainnet, used for smart contract development, testing and educational purposes.
-        </div>
-
-        <h2>Project Overview</h2>
-        <p>
-            TetherUSD Research Token is a TRC20 smart contract deployed on the TRON mainnet for
-            educational and research purposes. The goal of this deployment is to study token
-            mechanics such as fixed initial supply, temporary balances, staking rewards and
-            controlled mint / burn logic under real network conditions.
-        </p>
-
-        <h2>Contract Details</h2>
-        <div class="box">
-            <div class="label">Contract Address</div>
-            <div class="value">
-                <code>TAeNnF5yGaNhiZyQRv7DMXSD31r5zYR42p</code>
+<div class="shell">
+    <header>
+        <div class="brand">
+            <div class="logo">
+                <span>R</span>
+            </div>
+            <div>
+                <div class="brand-text-title">TetherUSD Research Token</div>
+                <div class="brand-text-sub">TRC20 contract on TRON mainnet · Educational use only</div>
             </div>
         </div>
-        <div class="box">
-            <div class="label">Network</div>
-            <div class="value">TRON mainnet</div>
+        <div class="badge">
+            Research / Non-commercial
         </div>
-        <div class="box">
-            <div class="label">Token Standard</div>
-            <div class="value">TRC20</div>
-        </div>
-        <div class="box">
-            <div class="label">Token Name / Symbol</div>
-            <div class="value">Tether USD (name) · USDT (symbol)</div>
-        </div>
+    </header>
 
-        <h2>Research & Usage Scope</h2>
-        <p>
-            This token is not intended for public sale, fundraising or speculative trading.
-            It is used strictly as a research asset to test interactions with wallets, block
-            explorers, rating systems and DeFi-like logic on TRON.
-        </p>
-        <p>
-            The contract source code is verified on TRONSCAN and may be reviewed by auditors,
-            security researchers or developers interested in advanced token mechanics.
-        </p>
+    <main>
+        <!-- Left column -->
+        <section>
+            <article class="card">
+                <h1>TetherUSD Research Token (TRON)</h1>
+                <p class="subtitle">
+                    TetherUSD Research Token is a TRC20 smart contract deployed on the TRON mainnet
+                    and used exclusively for smart contract development, research and educational
+                    activities.
+                </p>
 
-        <div class="disclaimer">
-            <strong>Important disclaimer:</strong><br>
-            This token is not issued by Tether and is not the official USDT stablecoin.
-            It must not be considered a representation of the real USDT token in any
-            financial, legal or commercial context. Any use is strictly at the user’s own risk.
-        </div>
+                <div class="chips">
+                    <div class="chip"><strong>Network:</strong>&nbsp;TRON mainnet</div>
+                    <div class="chip"><strong>Standard:</strong>&nbsp;TRC20</div>
+                    <div class="chip"><strong>Decimals:</strong>&nbsp;6</div>
+                    <div class="chip"><strong>Purpose:</strong>&nbsp;Research / Testing</div>
+                </div>
 
-        <p class="muted">
-            Contact: <a href="mailto:fisdeo117@gmail.com">fisdeo117@gmail.com</a>
-        </p>
-    </div>
+                <h2>Project Overview</h2>
+                <p>
+                    The contract implements a USDT-like asset with fixed initial supply, a temporary
+                    balance layer and a simple staking mechanism. It is designed to observe how
+                    advanced token mechanics interact with wallets, block explorers, risk scoring
+                    systems and DeFi-style integrations under real network conditions.
+                </p>
+
+                <p>
+                    No tokens are offered for public sale and the contract is not used for
+                    fundraising, speculation or yield products aimed at end users. Transfers are
+                    limited to controlled test scenarios and internal experiments.
+                </p>
+
+                <h3>Research Focus</h3>
+                <ul class="list">
+                    <li>Behaviour of TRC20 tokens with additional accounting layers (temporary balances).</li>
+                    <li>Interaction between staking rewards and total supply accounting.</li>
+                    <li>Risk flagging and rating logic in blockchain explorers such as TRONSCAN.</li>
+                    <li>Wallet UX when dealing with tokens that resemble known symbols.</li>
+                </ul>
+
+                <div class="disclaimer">
+                    <strong>Important disclaimer</strong><br>
+                    This contract is <u>not</u> issued by Tether and is <u>not</u> the official USDT
+                    stablecoin. It must not be considered or presented as a representation of the
+                    real USDT token in any financial, legal or commercial context. Any interaction
+                    with this research token is performed at the user’s own risk.
+                </div>
+
+                <div class="contact">
+                    Contact: <a href="mailto:fisdeo117@gmail.com">fisdeo117@gmail.com</a>
+                </div>
+            </article>
+        </section>
+
+        <!-- Right column -->
+        <aside>
+            <article class="card">
+                <div class="section-title">Contract details</div>
+                <div class="info-grid">
+                    <div class="info-box">
+                        <div class="label">Contract address</div>
+                        <div class="value">
+                            <code>TAeNnF5yGaNhiZyQRv7DMXSD31r5zYR42p</code>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <div class="label">Token name</div>
+                        <div class="value">Tether USD</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="label">Symbol</div>
+                        <div class="value">USDT</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="label">Standard</div>
+                        <div class="value">TRC20 · 6 decimals</div>
+                    </div>
+                </div>
+
+                <h3>Key mechanics</h3>
+                <p class="muted">
+                    High-level description of the most relevant behaviours implemented in the
+                    contract:
+                </p>
+                <ul class="list">
+                    <li>Fixed initial supply assigned to the deployer wallet.</li>
+                    <li>Temporary balances with expiration windows for controlled experiments.</li>
+                    <li>Owner-controlled mint and burn functions for test scenarios.</li>
+                    <li>Simple staking logic with reward rate encoded in the contract.</li>
+                </ul>
+
+                <div class="pill">
+                    Verified source code on TRONSCAN · Research-only deployment
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="section-title">Usage scope</div>
+                <p>
+                    The TetherUSD Research Token is intended for:
+                </p>
+                <ul class="list">
+                    <li>Smart contract development training and demonstrations.</li>
+                    <li>Security research and auditing exercises.</li>
+                    <li>Integration tests with wallets, explorers and tooling.</li>
+                </ul>
+                <p class="muted">
+                    Any third party reusing or forking this design should clearly distinguish
+                    their deployment from the official USDT contract and comply with local
+                    regulations and best practices.
+                </p>
+            </article>
+        </aside>
+    </main>
+
+    <footer>
+        © TetherUSD Research Token · Technical and educational deployment on TRON mainnet.
+    </footer>
 </div>
 </body>
 </html>
